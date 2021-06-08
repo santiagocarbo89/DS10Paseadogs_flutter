@@ -10,6 +10,7 @@ import 'package:p4_s1/zona.dart';
 class AplicacionPaseadores{
   List<Usuario> usuarios;
   List<Paseador> paseadores;
+  List<Zona> zonas;
   Usuario usuario_actual;
   Paseador paseador_actual;
   Paseo paseo_actual;
@@ -26,6 +27,8 @@ class AplicacionPaseadores{
     usuario_actual = null;
     paseador_actual = null;
     paseo_actual = new Paseo();
+    this.zonas = new List();
+    zonas.add(new Zona("Padul", "Granada"));
   }
 
   void registrarUsuario(nombre, edad, correo){
@@ -43,6 +46,19 @@ class AplicacionPaseadores{
 
   List<Paseador> mostrarPaseadores(){
     return paseadores;
+  }
+
+  void registrarZona(nombre, ciudad){
+    var user = new Zona(nombre, ciudad);
+    zonas.add(user);
+  }
+
+  List<Zona> mostrarZonas(){
+    return zonas;
+  }
+
+  void eliminarZona(usuario){
+    zonas.remove(usuario);
   }
 
   void registrarPaseador(nombre, edad, correo){

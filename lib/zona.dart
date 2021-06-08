@@ -2,7 +2,7 @@ import 'ciudad.dart';
 
 class Zona{
   String nombre;
-  Ciudad ciudad;
+  String ciudad;
 
   Zona(nombre, ciudad){
     this.nombre = nombre;
@@ -13,7 +13,7 @@ class Zona{
     return nombre;
   }
 
-  Ciudad getCiudad(){
+  String getCiudad(){
     return ciudad;
   }
 }
