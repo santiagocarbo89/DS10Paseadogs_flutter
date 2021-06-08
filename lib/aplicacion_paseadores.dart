@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:p4_s1/mascota.dart';
 import 'package:p4_s1/paseador.dart';
 import 'package:p4_s1/paseo.dart';
+import 'package:p4_s1/perro.dart';
 import 'package:p4_s1/usuario.dart';
 import 'package:p4_s1/zona.dart';
 
@@ -14,7 +16,9 @@ class AplicacionPaseadores{
 
   AplicacionPaseadores(){
     this.usuarios = new List();
-    Usuario paco = new Usuario("Paco", 19, "paco@hotmail.com", null);
+    List<Mascota> mascotas = new List();
+    mascotas.add(new Perro("Anakin", 1));
+    Usuario paco = new Usuario("Paco", 19, "paco@hotmail.com", mascotas);
     usuarios.add(paco);
     this.paseadores = new List();
     Paseador paco2 = new Paseador("Fernando", 33, "fernando@hotmail.com");
@@ -29,8 +33,16 @@ class AplicacionPaseadores{
     usuarios.add(user);
   }
 
+  void eliminarUsuario(usuario){
+    usuarios.remove(usuario);
+  }
+
   List<Usuario> mostrarUsuarios(){
     return usuarios;
+  }
+
+  List<Paseador> mostrarPaseadores(){
+    return paseadores;
   }
 
   void registrarPaseador(nombre, edad, correo){
@@ -38,9 +50,11 @@ class AplicacionPaseadores{
     paseadores.add(pas);
   }
 
-  List<Paseador> mostrarPaseadores(){
-    return paseadores;
+  void eliminarPaseador(usuario){
+    paseadores.remove(usuario);
   }
+
+
 
   void agregarMascotaAUsuario(nombre_usuario, mascota){
     bool continuar = true;

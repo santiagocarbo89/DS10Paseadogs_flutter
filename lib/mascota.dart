@@ -10,4 +10,12 @@ abstract class Mascota{
     this.edad = edad;
     this.paseo = new Paseo();
   }
+
+  String getNombre(){
+    return nombre;
+  }
+
+  int getEdad(){
+    return edad;
+  }
 }

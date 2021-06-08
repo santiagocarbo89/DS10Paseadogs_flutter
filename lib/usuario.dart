@@ -18,6 +18,13 @@ class Usuario{
     mascotas.add(mascota);
   }
 
+  void eliminarMascota(mascota_nombre){
+    for(int i = 0; i < mascotas.length; i++){
+      if(mascota_nombre == mascotas.elementAt(i).getNombre())
+        mascotas.removeAt(i);
+    }
+  }
+
   String getNombre(){
     return nombre;
   }
