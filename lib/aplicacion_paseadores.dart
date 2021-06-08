@@ -38,6 +38,10 @@ class AplicacionPaseadores{
     paseadores.add(pas);
   }
 
+  List<Paseador> mostrarPaseadores(){
+    return paseadores;
+  }
+
   void agregarMascotaAUsuario(nombre_usuario, mascota){
     bool continuar = true;
 
