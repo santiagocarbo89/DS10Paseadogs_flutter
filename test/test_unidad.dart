@@ -1,5 +1,4 @@
 import 'package:p4_s1/aplicacion_paseadores.dart';
-import 'package:p4_s1/ciudad.dart';
 import 'package:p4_s1/gato.dart';
 import 'package:p4_s1/huron.dart';
 import 'package:p4_s1/mascota.dart';
@@ -21,19 +20,19 @@ void main(){
 
     test('Comprobamos el nombre del usuario', (){
 
-      final usuario = new Usuario('Francisco', 32, new Zona('Padul', new Ciudad('Granada', null)), mascotas);
+      final usuario = new Usuario('Francisco', 32, 'francisco@hotmail.com', mascotas);
       expect(usuario.getNombre(), 'Francisco');
     });
 
     test('Comprobamos que tiene a Ruki', (){
 
-      final usuario = new Usuario('Francisco', 32, new Zona('Padul', new Ciudad('Granada', null)), mascotas);
+      final usuario = new Usuario('Francisco', 32, 'francisco@hotmail.com', mascotas);
       expect(usuario.tieneMascota(mascotas.elementAt(0)), true);
     });
 
     test('Comprobamos que aniade una mascota', (){
 
-      final usuario = new Usuario('Francisco', 32, new Zona('Padul', new Ciudad('Granada', null)), mascotas);
+      final usuario = new Usuario('Francisco', 32, 'francisco@hotmail.com', mascotas);
       usuario.agregarMascota(new Gato('Tifo', 2));
       expect(usuario.mascotas.length, 3);
     });
@@ -51,7 +50,7 @@ void main(){
 
     test('Comprobar paseador', (){
       final paseo = new Paseo();
-      var paseador = new Paseador('Paco', 21, new Zona('Churriana', new Ciudad('Granada', null)), paseo);
+      var paseador = new Paseador('Paco', 21, 'francisco@hotmail.com');
       paseo.agregarPaseador(paseador);
 
       expect(paseo.paseador, paseador);
@@ -80,23 +79,23 @@ void main(){
     mascotas2.add(new Perro('Kira', 7));
     mascotas2.add(new Huron('Lorel', 2));
 
-    Zona zona1 = new Zona('Armilla', new Ciudad('Granada', null));
-    Zona zona2 = new Zona('Granada', new Ciudad('Granada', null));
+    Zona zona1 = new Zona('Armilla', 'Granada');
+    Zona zona2 = new Zona('Granada', 'Granada');
 
-    Usuario user1 = new Usuario('Fernando', 31, zona1, mascotas1);
-    Usuario user2 = new Usuario('Alfonso', 31, zona2, mascotas2);
+    Usuario user1 = new Usuario('Fernando', 31, 'francisco@hotmail.com', mascotas1);
+    Usuario user2 = new Usuario('Alfonso', 31, 'francisco@hotmail.com', mascotas2);
     var usuarios = new List<Usuario>();
     usuarios.add(user1);
     usuarios.add(user2);
 
-    Paseador paseador1 = new Paseador('Esteban', 23, zona1, paseo);
-    Paseador paseador2 = new Paseador('Laura', 22, zona2, paseo);
+    Paseador paseador1 = new Paseador('Esteban', 23, 'francisco@hotmail.com');
+    Paseador paseador2 = new Paseador('Laura', 22, 'francisco@hotmail.com');
     var paseadores = new List<Paseador>();
     paseadores.add(paseador1);
-    paseadores.add(paseador2);;
+    paseadores.add(paseador2);
 
     test('Busca el usuario correcto', (){
-      final aplicacion = new AplicacionPaseadores(usuarios, paseadores);
+      final aplicacion = new AplicacionPaseadores();
       var mascota_ejemplo = mascotas2.elementAt(1); //Lorel
       var usuario_prueba = aplicacion.buscarUsuario(mascota_ejemplo);
 
@@ -104,7 +103,7 @@ void main(){
     });
 
     test('Agregamos mascota a usuario', (){
-      final aplicacion = new AplicacionPaseadores(usuarios, paseadores);
+      final aplicacion = new AplicacionPaseadores();
       Mascota ejemplo = new Gato('Lucy', 3);
       aplicacion.agregarMascotaAUsuario('Fernando', ejemplo);
 
@@ -112,8 +111,8 @@ void main(){
     });
 
     test('Registramos usuario', (){
-      final aplicacion = new AplicacionPaseadores(usuarios, paseadores);
-      aplicacion.registrarUsuario('Lucia', 21, new Zona('Madrid', new Ciudad('Madrid', null)), mascotas1);
+      final aplicacion = new AplicacionPaseadores();
+      aplicacion.registrarUsuario('Lucia', 21, 'francisco@hotmail.com');
 
       expect(aplicacion.usuarios.length, 3);
     });
