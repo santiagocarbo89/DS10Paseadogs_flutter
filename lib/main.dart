@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:p4_s1/aplicacion_paseadores.dart';
 import 'package:p4_s1/paseador.dart';
@@ -8,18 +10,28 @@ import 'package:p4_s1/gato.dart';
 import 'package:p4_s1/huron.dart';
 import 'package:p4_s1/zona.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 void main() {
+  HttpOverrides.global = new MyHttpOverrides();
   runApp(MyApp());
 }
 
+Future<AplicacionPaseadores> _futuro;
 AplicacionPaseadores ap = new AplicacionPaseadores();
 String _tipo = "";
 
+
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-
-
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -325,6 +337,7 @@ class _MyHomePageState_mascotas_agregar extends State<MyHomePage_mascotas_agrega
 
   void _registrarMascota() {
     setState(() {
+
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
@@ -342,14 +355,25 @@ class _MyHomePageState_mascotas_agregar extends State<MyHomePage_mascotas_agrega
       }
 
       if(!continuar){
-        if(_tipo == "perro")
-          usuario.agregarMascota(new Perro(nameMascotaController.text, int.parse(ageMascotaController.text)));
-        else if(_tipo == "gato")
-          usuario.agregarMascota(new Gato(nameMascotaController.text, int.parse(ageMascotaController.text)));
-        else if(_tipo == "huron")
-          usuario.agregarMascota(new Huron(nameMascotaController.text, int.parse(ageMascotaController.text)));
+        if(_tipo == "perro") {
+          Mascota perro=new Perro(nameMascotaController.text,
+              int.parse(ageMascotaController.text));
+          usuario.agregarMascota(perro);
+          AplicacionPaseadores.createMascota(perro);
+        }
+        else if(_tipo == "gato") {
+          Mascota gato=new Gato(nameMascotaController.text,
+              int.parse(ageMascotaController.text));
+          usuario.agregarMascota(gato);
+          AplicacionPaseadores.createMascota(gato);
+        }
+        else if(_tipo == "huron") {
+          Mascota huron=new Huron(nameMascotaController.text,
+              int.parse(ageMascotaController.text));
+          usuario.agregarMascota(huron);
+          AplicacionPaseadores.createMascota(huron);
+        }
       }
-
     });
   }
 
